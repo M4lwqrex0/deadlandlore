@@ -130,3 +130,77 @@ window.addEventListener("beforeunload", () => {
     sendDiscordEmbed("Un visiteur anonyme", timeSpent); // Envoie l'embed
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    // Créer la loupe
+    const magnifier = document.createElement("div");
+    magnifier.classList.add("magnifier");
+    document.body.appendChild(magnifier);
+
+    let isMouseDown = false; // Vérifie si la souris est maintenue
+    let img = null; // Image actuellement affichée
+
+    // Sélectionner l'image actuelle affichée
+    function getCurrentImage() {
+        return document.querySelector(".page img");
+    }
+
+    // Suivre la souris et ajuster la loupe
+    document.addEventListener("mousemove", function (event) {
+        if (!isMouseDown) return;
+
+        img = getCurrentImage();
+        if (!img) return;
+
+        // Positionner la loupe sur la souris
+        let x = event.pageX - magnifier.offsetWidth / 2;
+        let y = event.pageY - magnifier.offsetHeight / 2;
+        magnifier.style.left = `${x}px`;
+        magnifier.style.top = `${y}px`;
+
+        // Calculer le zoom en fonction de la position de la souris
+        let imgRect = img.getBoundingClientRect();
+        let offsetX = ((event.clientX - imgRect.left) / imgRect.width) * 100;
+        let offsetY = ((event.clientY - imgRect.top) / imgRect.height) * 100;
+
+        magnifier.style.backgroundImage = `url(${img.src})`;
+        magnifier.style.backgroundSize = `${imgRect.width * 2}px ${imgRect.height * 2}px`; // Zoom x2
+        magnifier.style.backgroundPosition = `${offsetX}% ${offsetY}%`;
+    });
+
+    // Activer la loupe en maintenant le clic gauche
+    document.addEventListener("mousedown", function (event) {
+        if (!getCurrentImage()) return; // Ne s'active que si une image est visible
+        isMouseDown = true;
+        magnifier.classList.add("active");
+    });
+
+    // Désactiver la loupe en relâchant le clic gauche
+    document.addEventListener("mouseup", function () {
+        isMouseDown = false;
+        magnifier.classList.remove("active");
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const popup = document.getElementById("popup");
+    const closePopup = document.getElementById("closePopup");
+    const popupSound = document.getElementById("popupSound");
+    const closePopupSound = document.getElementById("closePopupSound"); // Nouveau son
+
+    // ✅ Afficher la popup après 2 secondes + jouer le son
+    setTimeout(() => {
+        popup.classList.add("show");
+        popupSound.play().catch(err => console.warn("Autoplay bloqué :", err)); // 🎵 Joue le son lors de l’apparition
+    }, 2000);
+
+    // ❌ Cacher la popup avec un son lorsqu'on clique sur "OK"
+    closePopup.addEventListener("click", () => {
+        closePopupSound.play().catch(err => console.warn("Erreur lecture son fermeture :", err)); // 🎵 Joue le son de fermeture
+        popup.classList.remove("show");
+        setTimeout(() => {
+            popup.style.display = "none"; // Supprime la popup après l'animation
+        }, 500);
+    });
+});
+
+

@@ -232,4 +232,72 @@ body {
     }
 }
 
+/* 🔍 Style de la loupe */
+.magnifier {
+    position: absolute;
+    width: 150px; /* Taille de la loupe */
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid rgba(106, 0, 255, 0.8); /* Contour violet */
+    box-shadow: 0 0 15px rgba(106, 0, 255, 0.6), 
+                0 0 30px rgba(106, 0, 255, 0.4), 
+                0 0 40px rgba(106, 0, 255, 0.3);
+    background-repeat: no-repeat;
+    pointer-events: none;
+    display: none;
+    z-index: 1000;
+    transition: transform 0.1s ease-out;
+}
+
+/* 🖱️ Effet de transition quand la loupe apparaît */
+.magnifier.active {
+    display: block;
+}
+
+/* 🔔 Style de la popup */
+.popup {
+    position: fixed;
+    bottom: -100px; /* Cachée au début */
+    left: 20px; /* Alignée à gauche */
+    background: rgba(36, 0, 70, 0.9); /* Fond violet semi-transparent */
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 16px;
+    box-shadow: 0 0 15px rgba(136, 0, 255, 0.7),
+                0 0 30px rgba(136, 0, 255, 0.5),
+                0 0 40px rgba(136, 0, 255, 0.3);
+    transition: bottom 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 0;
+    z-index: 9999;
+}
+
+/* 🖱️ Apparition de la popup */
+.popup.show {
+    bottom: 50px; /* Fait apparaître la popup */
+    opacity: 1;
+}
+
+/* 🎨 Style du bouton */
+.popup button {
+    background: linear-gradient(45deg, #6a00ff, #4c00ff);
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+    box-shadow: 0 0 10px rgba(106, 0, 255, 0.7);
+    transition: all 0.3s ease-in-out;
+}
+
+/* ✨ Effet au survol du bouton */
+.popup button:hover {
+    background: linear-gradient(45deg, #3f00b3, #5700e0);
+    box-shadow: 0 0 15px rgba(136, 0, 255, 1),
+                0 0 30px rgba(136, 0, 255, 0.8),
+                0 0 40px rgba(136, 0, 255, 0.6);
+    transform: scale(1.05);
+}
 
