@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const startSound = document.getElementById("startSound");
 
     if (startSound) {
-        startSound.volume = 0.3; // 🔉 Réduit le volume à 30%
+        startSound.volume = 0.1; // 🔉 Réduit le volume à 30%
         
         // Jouer le son au chargement de la page
         startSound.play().catch(error => {
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("click", () => {
     const startSound = document.getElementById("startSound");
     if (startSound) {
-        startSound.volume = 0.3; // 🔉 Assure que le volume reste bas avant la lecture
+        startSound.volume = 0.1; // 🔉 Assure que le volume reste bas avant la lecture
         startSound.play().catch(error => console.log("Lecture automatique bloquée :", error));
     }
 }, { once: true }); // ✅ Le son ne jouera qu'une seule fois après le premier clic
