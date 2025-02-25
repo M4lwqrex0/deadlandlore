@@ -203,4 +203,27 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const viewModeButton = document.getElementById("viewModeButton");
+    const viewModeOverlay = document.getElementById("viewModeOverlay");
+    const closeViewMode = document.getElementById("closeViewMode");
+    const body = document.body;
+    const magnifier = document.querySelector(".magnifier");
+
+    // Activer le mode lisible
+    viewModeButton.addEventListener("click", () => {
+        viewModeOverlay.classList.add("view-mode-on");
+        body.classList.add("view-mode-on"); // Désactive la loupe
+
+        // 🔽 Cache immédiatement la loupe si elle est active
+        if (magnifier) magnifier.style.display = "none";
+    });
+
+    // Désactiver le mode lisible
+    closeViewMode.addEventListener("click", () => {
+        viewModeOverlay.classList.remove("view-mode-on");
+        body.classList.remove("view-mode-on"); // Réactive la loupe
+    });
+});
+
 
