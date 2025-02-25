@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lore DeadLand RP</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Background avec effet de flou -->
+    <div class="background-blur"></div>
+
+    <!-- Conteneur du livre avec UNE SEULE PAGE affichée -->
+    <div class="book-wrap">
+        <div class="page-container">
+            <div class="page">
+                <img src="img/1.png" alt="Page 1">
+            </div>
+        </div>
+    </div>
+
+<!-- 🎮 Widget Discord avec overlay -->
+<div class="discord-widget">
+    <div class="discord-overlay"></div> 
+    <iframe src="https://discord.com/widget?id=1228220916035751986&theme=dark" 
+        width="350" height="500" 
+        allowtransparency="true" frameborder="0" 
+        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+    </iframe>
+</div>
+
+
+<!-- 🔗 Icônes de réseaux sociaux -->
+<div class="social-icons">
+    <a href="https://deadland-rp.tebex.io/" target="_blank">
+        <img src="img/tebex.png" alt="Tebex">
+    </a>
+    <a href="https://www.youtube.com/@DeadLandRpOfficielFiveM" target="_blank">
+        <img src="img/youtube.png" alt="YouTube">
+    </a>
+    <a href="https://www.tiktok.com/@deadlandrp" target="_blank">
+        <img src="img/tiktok.png" alt="TikTok">
+    </a>
+</div>
+
+
+    <!-- Boutons de navigation -->
+    <div class="buttons">
+        <button class="btn" id="prevBtn" disabled>Précédent</button>
+        <button class="btn" id="nextBtn">Suivant</button>
+    </div>
+    <audio id="startSound" src="sound/Despair.mp3"></audio>
+    <audio id="startSound" src="sound/Despair.mp3"></audio>
+    <audio id="flipSound" src="sound/page.mp3"></audio>
+    <script src="script.js"></script>
+
+</body>
+</html>

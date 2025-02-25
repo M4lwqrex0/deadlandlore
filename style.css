@@ -1,0 +1,235 @@
+/* 📌 Effet de flou en arrière-plan */
+.background-blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('img/zXftEa0.png') no-repeat center center/cover;
+    filter: blur(2px);
+    z-index: -1;
+}
+
+/* 📌 Styles généraux */
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+/* 📖 Conteneur du livre (Glow plus lumineux) */
+.book-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 26vw; /* 🔥 Ajusté au pixel près */
+    height: 81vh; /* 🔥 Ajusté pour que ça colle parfaitement */
+    max-width: 900px;
+    max-height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px; /* 🔥 Légèrement réduit pour coller au livre */
+    padding: 0;
+    background: transparent;
+    box-shadow: 0 0 15px rgba(136, 0, 255, 0.7), 
+                0 0 30px rgba(136, 0, 255, 0.5), 
+                0 0 40px rgba(136, 0, 255, 0.3); /* ✅ Glow plus intense */
+    transition: all 0.3s ease-in-out;
+}
+
+/* ✨ Effet au survol (Glow encore plus vibrant) */
+.book-wrap:hover {
+    box-shadow: 0 0 20px rgba(136, 0, 255, 1), 
+                0 0 40px rgba(136, 0, 255, 0.8), 
+                0 0 50px rgba(136, 0, 255, 0.6);
+    transform: translate(-50%, -50%) scale(1.008); /* 🔥 Effet léger d'agrandissement */
+}
+
+/* 📄 Conteneur des pages */
+.page-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    perspective: 2000px;
+    overflow: hidden;
+}
+
+/* 📜 Style des pages */
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden;
+    transform-origin: right center;
+}
+
+/* 📜 Images ajustées */
+.page img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+/* 🎛️ Position des boutons */
+.buttons {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+/* 🎨 Style des boutons avec Glow amélioré */
+.btn {
+    padding: 12px 25px;
+    border: none;
+    background: linear-gradient(45deg, #4c00ff, #6a00ff);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(106, 0, 255, 0.7), 
+                0 0 30px rgba(106, 0, 255, 0.5), 
+                0 0 40px rgba(106, 0, 255, 0.3); /* ✅ Glow plus visible */
+}
+
+/* ✨ Effet au survol avec Glow boosté */
+.btn:hover {
+    background: linear-gradient(45deg, #3f00b3, #5700e0);
+    box-shadow: 0 0 20px rgba(136, 0, 255, 1), 
+                0 0 40px rgba(136, 0, 255, 0.8), 
+                0 0 50px rgba(136, 0, 255, 0.6); /* ✅ Glow ultra intense */
+    transform: scale(1.05); /* 🔥 Effet d’agrandissement au survol */
+}
+
+/* 🎯 Effet de "pressé" quand on clique */
+.btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 10px rgba(106, 0, 255, 0.7);
+}
+
+/* ❌ Boutons désactivés */
+.btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* 📱 Mode Mobile */
+@media screen and (max-width: 768px) {
+    .book-wrap {
+        width: 90vw;
+        height: 80vh;
+    }
+
+    .btn {
+        font-size: 20px;
+        padding: 15px 30px;
+    }
+}
+
+
+/* 🎮 Widget Discord à droite */
+.discord-widget {
+    position: fixed;
+    top: 50%;
+    right: 30px; /* Ajusté pour ne pas être collé au bord */
+    transform: translateY(-50%);
+    width: 500px;
+    height: 500px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px; /* Arrondi les bords */
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.7); /* Fond légèrement transparent */
+    border: 3px solid rgba(255, 255, 255, 0.1); /* Léger contour blanc */
+    box-shadow: 0 0 20px rgba(106, 0, 255, 1), 
+                0 0 40px rgba(106, 0, 255, 0.8), 
+                0 0 60px rgba(106, 0, 255, 0.5); /* 🔥 Ajustement du glow */
+}
+
+/* 💡 Ajustement de la boîte pour que l'effet lumineux ne dépasse pas */
+.discord-widget iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+/* 📱 Mode Mobile (Masquer le widget pour éviter les bugs) */
+@media screen and (max-width: 1024px) {
+    .discord-widget {
+        display: none;
+    }
+}
+
+/* 📍 Positionnement des icônes à gauche (plus proche du livre) */
+.social-icons {
+    position: fixed;
+    top: 50%;
+    left: 250px; /* Ajusté pour être bien placé */
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espace entre les icônes */
+    z-index: 10;
+}
+
+/* 🎨 Style des icônes avec Glow boosté */
+.social-icons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    background: white; /* ✅ Contour blanc */
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(136, 0, 255, 0.7), 
+                0 0 30px rgba(136, 0, 255, 0.5), 
+                0 0 40px rgba(136, 0, 255, 0.3); /* ✅ Glow plus visible */
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ✨ Effet au survol (Glow encore plus vibrant) */
+.social-icons a:hover {
+    box-shadow: 0 0 20px rgba(136, 0, 255, 1), 
+                0 0 40px rgba(136, 0, 255, 0.8), 
+                0 0 50px rgba(136, 0, 255, 0.6); /* ✅ Glow plus fort */
+    transform: scale(1.15); /* 🔥 Effet d’agrandissement au survol */
+}
+
+/* 📸 Style des images des icônes */
+.social-icons img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+}
+
+/* 📱 Mode Mobile (Masquer les icônes) */
+@media screen and (max-width: 1024px) {
+    .social-icons {
+        display: none;
+    }
+}
+
+
